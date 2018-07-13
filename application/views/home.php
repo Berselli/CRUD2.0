@@ -33,6 +33,12 @@
         </nav>
     </header>
 
+    <footer class="modal-footer bg-green footer-position" >
+        <div>
+            <h1>localiza tuas coisas</h1>
+        </div>
+
+    </footer>
 
 </body>
 </html>
