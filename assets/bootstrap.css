@@ -9463,6 +9463,15 @@
     padding: 0;
   }
 
+  .footer-logo {   
+    background: url(/assets/img/logo-localiza-hertz-pq.png) no-repeat;
+    margin-bottom: 0px;
+    display: block;
+    width: 155px;
+    height: 20px;
+    padding: 0;
+  }
+
 
   /* background image para home */
 
@@ -9473,7 +9482,24 @@
     left: 0;
     position: fixed;
     width: 100%;
-	}
+    color:rgba(255, 255, 255, 0.9);
+    }
+    
+    .footer-div {
+        position: relative;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
+        padding: 0.5rem 0.3rem;
+      }
 
 
 
