@@ -9463,4 +9463,18 @@
     padding: 0;
   }
 
+
+  /* background image para home */
+
+  /* footer posição */
+
+  .footer-position{
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+	}
+
+
+
   
