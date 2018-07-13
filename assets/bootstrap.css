@@ -9450,3 +9450,17 @@
   .navbar-green .navbar-text a:hover, .navbar-green .navbar-text a:focus {
     color: rgba(255, 255, 255, 0.9);
   }
+
+  /* Navbar Logo */
+
+  .navbar-logo {   
+    background: url(/assets/img/logo-localiza-hertz.png) no-repeat;
+    background-position: 0 15px;
+    vertical-align: middle;
+    display: inline-block;
+    height: 55px;
+    width: 190px;
+    padding: 0;
+  }
+
+  
