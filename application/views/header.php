@@ -16,7 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarColor02">
+            <div class="collapse navbar-collapse" id="navbarColor02" data-js="navbar-menu" >
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <a class="nav-link" href="#">ALUGUEL DE CARROS<span class="sr-only">(current)</span></a>
@@ -41,3 +41,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
         </nav>
     </header>
+
+    <script>
+        $buttonMenu = document.querySelector('[data-toggle="collapse"]');
+        $menuNavbar = document.querySelector('[data-js="navbar-menu"]');
+
+        $buttonMenu.addEventListener('click', handleMenuShow ,false);
+
+        function handleMenuShow(event){
+        event.preventDefault();
+        $menuNavbar.classList.toggle('show');
+    }
+    </script>
