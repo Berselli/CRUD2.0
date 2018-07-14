@@ -8,6 +8,7 @@
         private $senha_usuario;
         private $email_usuario;
         private $admin_usuario;
+        private $sobrenome_usuario;
 
         
         public function __construct(){
@@ -28,6 +29,14 @@
 
         public function get_email(){
             return $this -> email_usuario;
+        }
+        
+        public function get_sobrenome(){
+            return $this -> sobrenome_usuario;
+        }
+
+        public function get_nome_completo(){
+            return $this -> nome_usuario . ' ' . sobrenome_usuario;
         }
 
         public function is_admin(){
@@ -52,6 +61,10 @@
 
         public function set_admin($admin){
             $this -> admin_usuario = $admin;
+        }
+
+        public function set_sobrenome($sobrenome){
+            $this -> sobrenome_usuario = $sobrenome;
         }
 
         
