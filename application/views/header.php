@@ -1,9 +1,6 @@
 <?php
     defined('BASEPATH') OR exit('No direct script access allowed');
-    $user_is_logged = $this->session->userdata('user');
-    $user_is_admin = $this->session->userdata('admin');
-    //echo $user_is_logged === null;
-    //echo $user_is_admin === null;
+    $obj_usuario = $this->session->userdata('usuario');
 
 ?>
 <!DOCTYPE html>
@@ -28,30 +25,27 @@
                     </li>
                     
                     <?php
-                        if( (!(is_null($user_is_logged) ) || $user_is_logged === true) && $user_is_admin === true){
-                            echo '<li class="nav-item active">
+                        if($obj_usuario){
+                            if($obj_usuario -> is_admin()){
+                                echo '<li class="nav-item active">
                                 <a class="nav-link" href="#">CADASTRO DE CARROS<span class="sr-only">(current)</span></a>
-                            </li>';
-                            echo '<li class="nav-item active">
-                                <a class="nav-link" href="#">TABLELA DE DISPONIBILIDADE DE CARROS<span class="sr-only">(current)</span></a>
-                            </li>';
-                            echo '<li class="nav-item active">
-                                <a class="nav-link" href="#">HISTÓRICO DE ALUGUEIS<span class="sr-only">(current)</span></a>
-                            </li>';
-                        }
-                        if(!(is_null($user_is_logged) ) || $user_is_logged === true){
+                                </li>';
+                                echo '<li class="nav-item active">
+                                    <a class="nav-link" href="#">TABLELA DE DISPONIBILIDADE DE CARROS<span class="sr-only">(current)</span></a>
+                                </li>';
+                                echo '<li class="nav-item active">
+                                    <a class="nav-link" href="#">HISTÓRICO DE ALUGUEIS<span class="sr-only">(current)</span></a>
+                                </li>';
+                            }
                             echo '<li class="nav-item active">
                                 <a class="nav-link" href="#">MEUS CARROS ALUGADOS<span class="sr-only">(current)</span></a>
                             </li>';
-                        }
-                        if(is_null($user_is_logged) || $user_is_logged === false){
                             echo '<li class="nav-item active">
-                                <a class="nav-link" href="'. base_url('index.php/controller_primario/to_login') .'">LOG IN<span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="'. base_url('index.php/controller_primario/usuario_sair') .'">LOG OUT<span class="sr-only">(current)</span></a>
                             </li>';
-                        }
-                        if(!(is_null($user_is_logged) ) || $user_is_logged === true){
+                        }else{
                             echo '<li class="nav-item active">
-                                <a class="nav-link" href="'. base_url('index.php/controller_primario/user_logout') .'">LOG OUT<span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="'. base_url('index.php/controller_primario/para_entrar') .'">LOG IN<span class="sr-only">(current)</span></a>
                             </li>';
                         }
                     ?>
