@@ -51,7 +51,7 @@
                         }
                         if(!(is_null($user_is_logged) ) || $user_is_logged === true){
                             echo '<li class="nav-item active">
-                                <a class="nav-link" href="#">LOG OUT<span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="'. base_url('index.php/controller_primario/user_logout') .'">LOG OUT<span class="sr-only">(current)</span></a>
                             </li>';
                         }
                     ?>
