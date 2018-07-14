@@ -20,7 +20,7 @@
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade active show" id="login" data-toggle="pane-login">                
-                    <form action="<?php echo base_url('index.php/controller_login/user_login')?>"  method="post">
+                    <form action="<?php echo base_url('index.php/controller_primario/user_login')?>"  method="post">
                         <div class="form-group"><br>
                             <input type="text" class="form-control" placeholder="Username" name="user_name"> <br>
                             <input type="password" class="form-control" placeholder="Password" name="user_password"><br>
@@ -30,7 +30,7 @@
                     </form>       
                 </div>
                 <div class="tab-pane fade" id="singup" data-toggle="pane-singup">
-                    <form action="<?php echo base_url('index.php/controller_login/user_singup')?>" method="post">
+                    <form action="<?php echo base_url('index.php/controller_primario/user_singup')?>" method="post">
                         <div class="form-group"><br>
                             <input type="text" class="form-control" placeholder="Username" name="user_name"> <br>
                             <input type="password" class="form-control" placeholder="Password" name="user_password"> <br>
