@@ -75,6 +75,7 @@
     color: #444;
     text-align: left;
     background-color: rgba(112, 112, 112, 0.233);
+    min-height:100%;
   }
   
   [tabindex="-1"]:focus {
@@ -9472,9 +9473,6 @@
     padding: 0;
   }
 
-
-  /* background image para home */
-
   /* footer posição */
 
   .footer-position{
@@ -9485,6 +9483,7 @@
     }
     
     .footer-div {
+        margin-top:auto; 
         position: relative;
         display: -webkit-box;
         display: -ms-flexbox;
@@ -9497,14 +9496,20 @@
         -webkit-box-pack: justify;
             -ms-flex-pack: justify;
                 justify-content: space-between;
-        padding: 2.8%;
+        padding: 1vmax;
+        color:rgba(255, 255, 255, 0.9);
       }
 
+      html, body{ height:100%; margin:0; }
+
+      /* Container centralizado */
       .container-center {
         text-align: center;
-        padding: 13rem 1rem;
+        padding: 10%;
         background-color: #00984918;
-        height: 100%;
+        height: 85%;
         width: 100%;
         position: relative;
     }
+
+    
