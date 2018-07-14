@@ -11,11 +11,11 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap.css')?>">
-        <title>Document</title>
+        <title><?php echo $page_title; ?></title>
     </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-green bg-green">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <a class="navbar-logo" href="<?php echo base_url('index.php/controller_primario/index')?>"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -46,7 +46,7 @@
                         }
                         if(is_null($user_is_logged) || $user_is_logged === false){
                             echo '<li class="nav-item active">
-                                <a class="nav-link" href="#">LOG IN<span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="'. base_url('index.php/controller_primario/to_login') .'">LOG IN<span class="sr-only">(current)</span></a>
                             </li>';
                         }
                         if(!(is_null($user_is_logged) ) || $user_is_logged === true){

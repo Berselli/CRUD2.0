@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
             <footer class="" >
-                <div class="footer-div bg-green" >
+                <div class="footer-div bg-primary" >
                 <a class="footer-logo " href="#" ></a>
                 <ul class="navbar-nav mr-auto " >
                     <li>
