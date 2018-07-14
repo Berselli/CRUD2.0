@@ -28,6 +28,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <a class="nav-link" href="#">TABLELA DE DISPONIBILIDADE DE CARROS<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
+                        <a class="nav-link" href="#">MEUS CARROS ALUGADOS<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
                         <a class="nav-link" href="#">LOG IN<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
