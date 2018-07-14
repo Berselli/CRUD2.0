@@ -1,5 +1,10 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+    defined('BASEPATH') OR exit('No direct script access allowed');
+    $user_is_logged = $this->session->userdata('user');
+    $user_is_admin = $this->session->userdata('admin');
+    //echo $user_is_logged === null;
+    //echo $user_is_admin === null;
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -21,21 +26,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <li class="nav-item active">
                         <a class="nav-link" href="#">ALUGUEL DE CARROS<span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">CADASTRO DE CARROS<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">TABLELA DE DISPONIBILIDADE DE CARROS<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">MEUS CARROS ALUGADOS<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">LOG IN<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">LOG OUT<span class="sr-only">(current)</span></a>
-                    </li>
+                    
+                    <?php
+                        if( (!(is_null($user_is_logged) ) || $user_is_logged === true) && $user_is_admin === true){
+                            echo '<li class="nav-item active">
+                                <a class="nav-link" href="#">CADASTRO DE CARROS<span class="sr-only">(current)</span></a>
+                            </li>';
+                            echo '<li class="nav-item active">
+                                <a class="nav-link" href="#">TABLELA DE DISPONIBILIDADE DE CARROS<span class="sr-only">(current)</span></a>
+                            </li>';
+                            echo '<li class="nav-item active">
+                                <a class="nav-link" href="#">HISTÓRICO DE ALUGUEIS<span class="sr-only">(current)</span></a>
+                            </li>';
+                        }
+                        if(!(is_null($user_is_logged) ) || $user_is_logged === true){
+                            echo '<li class="nav-item active">
+                                <a class="nav-link" href="#">MEUS CARROS ALUGADOS<span class="sr-only">(current)</span></a>
+                            </li>';
+                        }
+                        if(is_null($user_is_logged) || $user_is_logged === false){
+                            echo '<li class="nav-item active">
+                                <a class="nav-link" href="#">LOG IN<span class="sr-only">(current)</span></a>
+                            </li>';
+                        }
+                        if(!(is_null($user_is_logged) ) || $user_is_logged === true){
+                            echo '<li class="nav-item active">
+                                <a class="nav-link" href="#">LOG OUT<span class="sr-only">(current)</span></a>
+                            </li>';
+                        }
+                    ?>
+                    
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="text" placeholder="BUSQUE UM CARRO">
