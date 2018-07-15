@@ -111,8 +111,8 @@
 
                 $array_carros = array();
 
-                $query =  $this->db->select('id_carro, modelo.nome_modelo, ano_carro, placa_carro, locatario_carro, cor_carro ')->from('carro')
-                ->join('modelo', 'modelo.id_modelo = carro.modelo_carro')->where('locatario_carro = ')->get();
+                $query =  $this->db->select('id_carro, modelo.nome_modelo, ano_carro, placa_carro, locatario_carro, cor_carro, locacao_carro')->from('carro')
+                ->join('modelo', 'modelo.id_modelo = carro.modelo_carro')->group_start()->where('locatario_carro = ')->or_where('locatario_carro', 0)->group_end()->get();
 
                 if ($query)
                 {
@@ -126,6 +126,46 @@
                         $obj_carro -> set_placa($row-> placa_carro);
                         $obj_carro -> set_locatario($row-> locatario_carro);
                         $obj_carro -> set_cor($row-> cor_carro);
+                        $obj_carro -> set_locacao($row-> locacao_carro);
+
+                        $array_carros[] = $obj_carro;
+                    }
+
+                    return $array_carros;
+                    
+                } else{
+                    return false;
+                }
+
+            } catch(Exception $e){
+                return false;
+            }
+        }
+        #endregion
+
+        #region pegar meus carros
+        public function get_meus_carros($id_usuario){
+            try{
+                $this->load->model('carro');                
+
+                $array_carros = array();
+
+                $query =  $this->db->select('id_carro, modelo.nome_modelo, ano_carro, placa_carro, locatario_carro, cor_carro, locacao_carro ')->from('carro')
+                ->join('modelo', 'modelo.id_modelo = carro.modelo_carro')->where('locatario_carro', $id_usuario )->get();
+
+                if ($query)
+                {
+                    foreach ($query->result() as $row){
+
+                        $obj_carro = new Carro();
+
+                        $obj_carro -> set_id($row-> id_carro);
+                        $obj_carro -> set_modelo($row-> nome_modelo);
+                        $obj_carro -> set_ano($row-> ano_carro);
+                        $obj_carro -> set_placa($row-> placa_carro);
+                        $obj_carro -> set_locatario($row-> locatario_carro);
+                        $obj_carro -> set_cor($row-> cor_carro);
+                        $obj_carro -> set_locacao($row-> locacao_carro);
 
                         $array_carros[] = $obj_carro;
                     }
@@ -148,13 +188,41 @@
                 $data = array('locatario_historico_locacao' => $id_usuario, 'carro_historico_locacao' => $id_carro, 
                 'data_locacao_historico_locacao' => date('Y-m-d'));
                 $str = $this->db->insert('historico_locacao', $data);
+                $insert_id = $this->db->insert_id();
 
 
                 $data = array(
-                    'locatario_carro' => $id_usuario
+                    'locatario_carro' => $id_usuario,
+                    'locacao_carro' => $insert_id
                 );                
                 $this->db->where('id_carro', $id_carro);
                 $this->db->update('carro', $data);
+                return true;
+            }catch(Exception $e){
+                return false;
+            }
+        }
+        #endregion
+
+        #region devolver carro
+        public function devolver_carro($id_usuario, $id_carro, $locacao_carro){
+            try{
+
+                $data = array(
+                    'data_devolucao_historico_locacao' => date('Y-m-d')
+                );
+                $this->db->where('id_historico_locacao', $locacao_carro);
+                $this->db->where('carro_historico_locacao', $id_carro);
+                $this->db->where('locatario_historico_locacao', $id_usuario);
+                $this->db->update('historico_locacao', $data);
+
+                $data = array(
+                    'locatario_carro' => '',
+                    'locacao_carro' => ''
+                );                
+                $this->db->where('id_carro', $id_carro);
+                $this->db->update('carro', $data);
+
                 return true;
             }catch(Exception $e){
                 return false;
