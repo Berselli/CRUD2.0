@@ -14,8 +14,17 @@ class Controller_primario extends CI_Controller {
         }
 
         public function para_entrar(){
-                $data['page_title'] = 'Log in';
+                $data['page_title'] = 'Entrar';
                 $this->load->view('cadastro_usuario', $data);
+        }
+
+        public function cadastro_carro(){
+                $this->load->model('usuario');
+                $this->load->library('session');
+                $data['page_title'] = 'Cadastro de Carros';
+                $this->load->view('header', $data);
+                $this->load->view('cadastro_carro');
+                $this->load->view('footer');
         }
 
 
@@ -60,9 +69,9 @@ class Controller_primario extends CI_Controller {
 
                         $objDataBase -> open();
 
-                        $valueReturn = $objDataBase -> cadastrar_usuario($nome_usuario, $sobrenome_usuario, $senha_usuario, $email_usuario);
+                        $valor_retorno = $objDataBase -> cadastrar_usuario($nome_usuario, $sobrenome_usuario, $senha_usuario, $email_usuario);
                         $objDataBase -> close();
-                        if($valueReturn){
+                        if($valor_retorno){
                                 //$this -> user_login();
                                 echo 'usuario cadastrado';
                         } else {
@@ -74,6 +83,31 @@ class Controller_primario extends CI_Controller {
                 }
                 			
         }
+
+        #region alugar carro
+        public function alugar_carro(){
+
+                $this->load->model('usuario');
+                $this->load->library('session');
+                $this->load->model('data_base');
+                
+                $objDataBase = new Data_base();
+
+                $objDataBase -> open();
+
+                $id_carro = $this->input->post('column_1');
+                $obj_usuario = $this->session->userdata('usuario');
+                $id_usuario = $obj_usuario -> get_id();                
+                $valor_retorno = $objDataBase -> alugar_carro($id_usuario, $id_carro);
+                if($valor_retorno){
+                        echo 'carro alugado';
+                }else{
+                        echo 'deu problema';
+                }
+
+        }
+                
+        #endregion
 
         public function usuario_sair(){
                 $this->load->library('session');
@@ -104,8 +138,7 @@ class Controller_primario extends CI_Controller {
                 $data['carros_array'] = $carros_array;
                 $this->load->view('header', $data);
                 $this->load->view('aluguel');
-                $this->load->view('footer');
-                
+                $this->load->view('footer');               
                 
                 	
         }
