@@ -62,7 +62,7 @@
 
                 $array_modelos = array();
 
-                $query =  $this->db->select('*')->from('modelos')->get();
+                $query =  $this->db->select('*')->from('modelo')->get();
 
                 if ($query)
                 {
