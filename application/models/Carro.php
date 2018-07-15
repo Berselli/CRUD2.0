@@ -39,6 +39,14 @@
             return $this -> cor_carro;
         }
 
+        public function is_locado(){
+            if( !(is_null($this -> locatario_carro)) && $this -> locatario_carro !== '' ){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
         public function set_id($id){
             $this -> id_carro = $id;
         }
@@ -62,6 +70,6 @@
         public function set_cor($cor){
             $this -> cor_carro = $cor;
         }
-        
+
     }
 ?>
