@@ -26,11 +26,11 @@
                         <a class="nav-link" href="<?php echo base_url('index.php/controller_primario/aluguel')?>">ALUGUEL DE CARROS<span class="sr-only">(current)</span></a>
                     </li>
                     
-                    <?php
+                    <?php 
                         if($obj_usuario){
                             if($obj_usuario -> is_admin()){
                                 echo '<li class="nav-item active">
-                                <a class="nav-link" href="#">CADASTRO DE CARROS<span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="'. base_url('index.php/controller_primario/cadastro_carro') .'">CADASTRO DE CARROS<span class="sr-only">(current)</span></a>
                                 </li>';
                                 echo '<li class="nav-item active">
                                     <a class="nav-link" href="#">TABLELA DE DISPONIBILIDADE DE CARROS<span class="sr-only">(current)</span></a>
@@ -40,7 +40,7 @@
                                 </li>';
                             }
                             echo '<li class="nav-item active">
-                                <a class="nav-link" href="#">MEUS CARROS ALUGADOS<span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="'. base_url('index.php/controller_primario/meus_carros') .'">MEUS CARROS ALUGADOS<span class="sr-only">(current)</span></a>
                             </li>';
                             echo '<li class="nav-item active">
                                 <a class="nav-link" href="'. base_url('index.php/controller_primario/usuario_sair') .'">LOG OUT<span class="sr-only">(current)</span></a>

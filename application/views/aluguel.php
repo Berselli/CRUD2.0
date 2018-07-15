@@ -32,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $couterColumns = 0;
                 if(!(is_null($carros_array) && $car_array !== '')){
                     foreach ($carros_array as $carro) {
-                        if(! ($carro -> get_locatario())) {
+                        
                             echo '<form action="'. base_url('index.php/controller_primario/alugar_carro') .'" method="post" ><tr name = "car_'. (++$counterCars) .'">';
                             echo '<td "> <input type="hidden" name = "column_'. (++$couterColumns) .'" value="' . $carro ->get_id() . '">' . $carro ->get_id() . '</td>';
                             echo '<td "> <input type="hidden" name = "column_'. (++$couterColumns) .'" value="' . $carro ->get_modelo() . '">' . $carro ->get_modelo() . '</td>';
@@ -49,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             }
                             
                             
-                        }
+                        
                         
                         $couterColumns = 0;
                     }
