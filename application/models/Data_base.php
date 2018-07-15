@@ -55,6 +55,93 @@
         }
         #endregion
         
+        #region pegar modelos
+        public function get_modelos(){
+            try{
+                $this->load->model('modelo');                
+
+                $array_modelos = array();
+
+                $query =  $this->db->select('*')->from('modelos')->get();
+
+                if ($query)
+                {
+                    foreach ($query->result() as $row){
+
+                        $obj_modelo = new Modelo();
+
+                        $obj_modelo -> set_id($row-> id_modelo);
+                        $obj_modelo -> set_nome($row-> nome_modelo);
+                        $obj_modelo -> set_marca($row-> marca_modelo);
+
+                        $array_modelos[] = $obj_modelo;
+                    }
+
+                    return $array_modelos;
+                    
+                } else{
+                    return false;
+                }
+
+            } catch(Exception $e){
+                return false;
+            }
+        }
+        #endregion
+
+        #region cadastrar carro
+
+        public function cadastrar_carro($modelo_carro, $ano_carro, $placa_carro, $cor_carro){
+            try{
+                $data = array('modelo_carro' => $modelo_carro, 'ano_carro' => $ano_carro, 
+                'placa_carro' => $placa_carro, 'cor_carro' => $cor_carro);
+                $str = $this->db->insert('carro', $data);
+                return true;
+            }catch(Exception $e){
+                return false;
+            }
+        }
+
+        #endregion
+
+        #region pegar carros
+        public function get_carros(){
+            try{
+                $this->load->model('carro');                
+
+                $array_carros = array();
+
+                $query =  $this->db->select('id_carro, modelo.nome_modelo, ano_carro, placa_carro, locatario_carro, cor_carro ')->from('carro')
+                ->join('modelo', 'modelo.id_modelo = carro.modelo_carro')->get();
+
+                if ($query)
+                {
+                    foreach ($query->result() as $row){
+
+                        $obj_carro = new Carro();
+
+                        $obj_carro -> set_id($row-> id_carro);
+                        $obj_carro -> set_modelo($row-> nome_modelo);
+                        $obj_carro -> set_ano($row-> ano_carro);
+                        $obj_carro -> set_placa($row-> placa_carro);
+                        $obj_carro -> set_locatario($row-> locatario_carro);
+                        $obj_carro -> set_cor($row-> cor_carro);
+
+                        $array_carros[] = $obj_carro;
+                    }
+
+                    return $array_carros;
+                    
+                } else{
+                    return false;
+                }
+
+            } catch(Exception $e){
+                return false;
+            }
+        }
+        #endregion
+
         #region create new car
         public function createNewCar($car_model, $car_year, $car_plate, $car_color){
             if(is_null($car_model) || is_null($car_year) || is_null($car_plate) || is_null($car_color)){
@@ -100,31 +187,6 @@
             }
         }
 
-        public function getModelos(){
-            try{
-                $query =  $this->db->select('*')->from('modelo')->get();
-                $valueReturn = array();
-                $carReturn = array();
-                if ($query)
-                {
-                    foreach ($query->result() as $row)
-                    {
-                        $modelo_id = $row->modelo_id;
-                        $modelo_descricao = $row->modelo_descricao;
-
-                        $modeloReturn['modelo_id'] = $modelo_id;
-                        $modeloReturn['modelo_descricao'] = $modelo_descricao;
-
-                        $valueReturn[] = $modeloReturn;
-                    }                    
-
-                    return $valueReturn;
-                }
-                return null;
-            }catch(Exception $e){
-                return null;
-            }
-        }
         
         #region delete car
         public function deleteCar($car_id){
