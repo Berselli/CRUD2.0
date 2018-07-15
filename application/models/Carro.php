@@ -9,6 +9,7 @@
         private $placa_carro;
         private $locatario_carro;
         private $cor_carro;
+        private $id_locacao;
 
         
         public function __construct(){
@@ -39,8 +40,12 @@
             return $this -> cor_carro;
         }
 
+        public function get_locacao(){
+            return $this -> id_locacao;
+        }
+
         public function is_locado(){
-            if( !(is_null($this -> locatario_carro)) && $this -> locatario_carro !== '' ){
+            if( ( !(is_null($this -> locatario_carro)) && $this -> locatario_carro !== '') || $this -> locatario_carro === 0 ){
                 return true;
             }else{
                 return false;
@@ -69,6 +74,10 @@
 
         public function set_cor($cor){
             $this -> cor_carro = $cor;
+        }
+
+        public function set_locacao($locacao){
+            $this -> id_locacao = $locacao;
         }
 
     }
