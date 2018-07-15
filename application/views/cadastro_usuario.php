@@ -12,30 +12,31 @@
         <div class="jumbotron-login container-login">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active show" data-toggle="tab-login" href="#login">LOG IN</a>
+                    <a class="nav-link active show" data-toggle="tab-login" href="#login">ENTRAR</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab-singup" href="#singup">SING UP</a>
+                    <a class="nav-link" data-toggle="tab-singup" href="#singup">REGISTRAR-SE</a>
                 </li>
             </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade active show" id="login" data-toggle="pane-login">                
-                    <form action="<?php echo base_url('index.php/controller_primario/user_login')?>"  method="post">
+                    <form action="<?php echo base_url('index.php/controller_primario/usuario_entrar')?>"  method="post">
                         <div class="form-group"><br>
-                            <input type="text" class="form-control" placeholder="Username" name="user_name"> <br>
-                            <input type="password" class="form-control" placeholder="Password" name="user_password"><br>
-                            <button type="submit" class="btn btn-info">Login</button>
+                            <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="E-mail" name="email_usuario"><br>                           
+                            <input type="password" class="form-control" placeholder="Senha" name="senha_usuario"><br>
+                            <button type="submit" class="btn btn-info">Entrar</button>
                             <button type="submit" class="btn btn-info" formaction=" <?php echo base_url('index.php/controller_primario/index') ?> ">Voltar</button>
                         </div>
                     </form>       
                 </div>
                 <div class="tab-pane fade" id="singup" data-toggle="pane-singup">
-                    <form action="<?php echo base_url('index.php/controller_primario/user_singup')?>" method="post">
+                    <form action="<?php echo base_url('index.php/controller_primario/usuario_registro')?>" method="post">
                         <div class="form-group"><br>
-                            <input type="text" class="form-control" placeholder="Username" name="user_name"> <br>
-                            <input type="password" class="form-control" placeholder="Password" name="user_password"> <br>
-                            <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email" name="user_email"><br>
-                            <button type="submit" class="btn btn-info">Sing Up</button>
+                            <input type="text" class="form-control" placeholder="Nome" name="nome_usuario"> <br>
+                            <input type="text" class="form-control" placeholder="Sobrenome" name="sobrenome_usuario"> <br>
+                            <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="E-mail" name="email_usuario"><br>
+                            <input type="password" class="form-control" placeholder="Senha" name="senha_usuario"><br>                            
+                            <button type="submit" class="btn btn-info">Registrar-se</button>
                             <button type="submit" class="btn btn-info" formaction=" <?php echo base_url('index.php/controller_primario/index') ?> ">Voltar</button>
                         </div>
                     </form>
