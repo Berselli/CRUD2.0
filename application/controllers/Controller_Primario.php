@@ -5,6 +5,8 @@ class Controller_primario extends CI_Controller {
 
 	public function index()
 	{       
+                $this->load->model('usuario');
+                $this->load->library('session');
                 $data['page_title'] = 'Home';
                 $this->load->view('header', $data);
                 $this->load->view('home');
@@ -19,6 +21,7 @@ class Controller_primario extends CI_Controller {
 
         public function usuario_entrar(){
 
+                $this->load->library('session');
                 $this->load->model('data_base');
 
                 $objDataBase = new Data_base();
@@ -43,6 +46,7 @@ class Controller_primario extends CI_Controller {
 
         public function usuario_registro(){
 
+                $this->load->library('session');
                 $this->load->model('data_base');
 
                 $nome_usuario = $this->input->post('nome_usuario');
@@ -72,28 +76,38 @@ class Controller_primario extends CI_Controller {
         }
 
         public function usuario_sair(){
+                $this->load->library('session');
                 $this->session->unset_userdata('usuario');
                 $this->session->sess_destroy();
                 $this->index();
         }
 
         public function aluguel(){
+
                 $this->load->model('data_base');
+
+                $this->load->model('carro');
 
                 $objDataBase = new Data_base();
 
                 $objDataBase -> open();
 
-                $valueReturnCars = $objDataBase -> getCars();
+                $carros_array = $objDataBase -> get_carros();
 
-                $valueReturnModelos = $objDataBase -> getModelos();
+                //$valueReturnModelos = $objDataBase -> getModelos();
 
+                $this->load->model('usuario');
+
+                $this->load->library('session');
+                
                 $data['page_title'] = 'Aluguel';
-                $data['car_array'] = $valueReturnCars;
-                $data['modelos_array'] = $valueReturnModelos;
+                $data['carros_array'] = $carros_array;
                 $this->load->view('header', $data);
                 $this->load->view('aluguel');
-                $this->load->view('footer');		
+                $this->load->view('footer');
+                
+                
+                	
         }
 
 
