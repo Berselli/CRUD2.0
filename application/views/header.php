@@ -1,5 +1,7 @@
 <?php
     defined('BASEPATH') OR exit('No direct script access allowed');
+    $this->load->model('usuario');
+    $this->load->library('session');
     $obj_usuario = $this->session->userdata('usuario');
 
 ?>
