@@ -18,9 +18,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <?php
                     if($obj_usuario){
                         echo '<th scope="col">Quer Alugar?</th>';
-                        if($obj_usuario -> is_admin()){
-                            echo '<th scope="col">Alterar informações do Carro</th>';
-                        }
                     }
                 ?>
                 
@@ -41,13 +38,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             echo '<td "> <input type="hidden" name = "column_'. (++$couterColumns) .'" value="' . $carro ->get_cor() . '">' . $carro ->get_cor() . '</td>';
                             echo '<input type="hidden" name = "column_'. (++$couterColumns) .'" value="' . $carro ->get_locatario() . '">';
                             if($obj_usuario){
-                                echo '<td> <button type="submit" class="btn btn-success  ">Alugar</button> </td>';
-                                if($obj_usuario -> is_admin()){
-                                    echo '<td> <button type="submit" class="btn btn-danger" formaction="'. base_url('index.php/controller_login/delete_car') .' ">Alterar</button>
-                                    </td> </tr> </form>';
-                                }
+                                echo '<td> <button type="submit" class="btn btn-success  ">Alugar</button> </td>';                                
                             }
-                            
+                            echo '</form>';
                             
                         
                         
