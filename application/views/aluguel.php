@@ -1,13 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-$this->load->model('usuario');
+    $this->load->model('usuario');
     $this->load->library('session');
     $obj_usuario = $this->session->userdata('usuario');
 ?>
 
 
             <div class="container-center-big">
-            <table class="table table-hover table-responsive-auto">
+            <table class="table table-hover table-responsive-auto ">
                 <thead>
                 <tr class="table-active">
                 <th scope="col">#</th>
@@ -33,7 +33,7 @@ $this->load->model('usuario');
                 if(!(is_null($carros_array) && $car_array !== '')){
                     foreach ($carros_array as $carro) {
                         if(! ($carro -> get_locatario())) {
-                            echo '<form action="'. base_url('index.php/controller_login/update_car_form') .'" method="post" ><tr name = "car_'. (++$counterCars) .'">';
+                            echo '<form action="'. base_url('index.php/controller_primario/alugar_carro') .'" method="post" ><tr name = "car_'. (++$counterCars) .'">';
                             echo '<td "> <input type="hidden" name = "column_'. (++$couterColumns) .'" value="' . $carro ->get_id() . '">' . $carro ->get_id() . '</td>';
                             echo '<td "> <input type="hidden" name = "column_'. (++$couterColumns) .'" value="' . $carro ->get_modelo() . '">' . $carro ->get_modelo() . '</td>';
                             echo '<td "> <input type="hidden" name = "column_'. (++$couterColumns) .'" value="' . $carro ->get_ano() . '">' . $carro ->get_ano() . '</td>';
@@ -41,7 +41,7 @@ $this->load->model('usuario');
                             echo '<td "> <input type="hidden" name = "column_'. (++$couterColumns) .'" value="' . $carro ->get_cor() . '">' . $carro ->get_cor() . '</td>';
                             echo '<input type="hidden" name = "column_'. (++$couterColumns) .'" value="' . $carro ->get_locatario() . '">';
                             if($obj_usuario){
-                                echo '<td> <button type="submit" class="btn btn-warning ">Alugar</button> </td>';
+                                echo '<td> <button type="submit" class="btn btn-success  ">Alugar</button> </td>';
                                 if($obj_usuario -> is_admin()){
                                     echo '<td> <button type="submit" class="btn btn-danger" formaction="'. base_url('index.php/controller_login/delete_car') .' ">Alterar</button>
                                     </td> </tr> </form>';
