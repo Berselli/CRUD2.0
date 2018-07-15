@@ -112,7 +112,7 @@
                 $array_carros = array();
 
                 $query =  $this->db->select('id_carro, modelo.nome_modelo, ano_carro, placa_carro, locatario_carro, cor_carro ')->from('carro')
-                ->join('modelo', 'modelo.id_modelo = carro.modelo_carro')->get();
+                ->join('modelo', 'modelo.id_modelo = carro.modelo_carro')->where('locatario_carro = ')->get();
 
                 if ($query)
                 {
@@ -142,50 +142,25 @@
         }
         #endregion
 
-        #region create new car
-        public function createNewCar($car_model, $car_year, $car_plate, $car_color){
-            if(is_null($car_model) || is_null($car_year) || is_null($car_plate) || is_null($car_color)){
-                return null;
-            }
+        #region alugar carro
+        public function alugar_carro($id_usuario, $id_carro){
             try{
-                $data = array('car_model' => $car_model, 'car_year' => $car_year, 'car_plate' => $car_plate, 'car_color' => $car_color);
-                $str = $this->db->insert('car', $data);
-                return $str;
+                $data = array('locatario_historico_locacao' => $id_usuario, 'carro_historico_locacao' => $id_carro, 
+                'data_locacao_historico_locacao' => date('Y-m-d'));
+                $str = $this->db->insert('historico_locacao', $data);
+
+
+                $data = array(
+                    'locatario_carro' => $id_usuario
+                );                
+                $this->db->where('id_carro', $id_carro);
+                $this->db->update('carro', $data);
+                return true;
             }catch(Exception $e){
-                return null;
+                return false;
             }
         }
         #endregion
-
-        public function getCars(){
-            try{
-                $query =  $this->db->select('*')->from('car')->get();
-                $valueReturn = array();
-                if ($query)
-                {
-                    foreach ($query->result() as $row)
-                    {
-                        $this->load->model('carro');
-
-                        $objCarro = new Carro();
-
-                        $objCarro -> setId( $row->car_id );
-                        $objCarro -> setDescricao( $row->car_descricao) ;
-                        $objCarro -> setModelo( $row->car_modelo_id) ;
-                        $objCarro -> setAno($row->car_ano);
-                        $objCarro -> setAlugado($row->car_alugado);
-                        $objCarro -> setCor($row->car_cor);
-
-                        $valueReturn[] = $objCarro;
-                    }                    
-
-                    return $valueReturn;
-                }
-                return null;
-            }catch(Exception $e){
-                return null;
-            }
-        }
 
         
         #region delete car
