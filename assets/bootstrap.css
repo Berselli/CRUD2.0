@@ -9471,6 +9471,15 @@ a.text-dark:hover, a.text-dark:focus {
   position: relative;
 }
 
+.container_center_left {
+  text-align: left;
+  padding: 10%;
+  background-color: #ffffff18;
+  height: 85%;
+  width: 100%;
+  position: relative;
+}
+
 .container-center-big {
   text-align: center;
   background-color: #ffffff18;
