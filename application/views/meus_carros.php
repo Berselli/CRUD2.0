@@ -40,6 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         if($obj_usuario){
                             echo '<td> <button type="submit" class="btn btn-success  ">Devolver</button> </td>';
                         }
+                        echo '</form>';
                         
                         $couterColumns = 0;
                     }
