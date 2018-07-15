@@ -33,10 +33,10 @@
                                 <a class="nav-link" href="'. base_url('index.php/controller_primario/cadastro_carro') .'">CADASTRO DE CARROS<span class="sr-only">(current)</span></a>
                                 </li>';
                                 echo '<li class="nav-item active">
-                                    <a class="nav-link" href="#">TABLELA DE DISPONIBILIDADE DE CARROS<span class="sr-only">(current)</span></a>
+                                    <a class="nav-link" href="'. base_url('index.php/controller_primario/disponibilidade_carros') .'">TABLELA DE DISPONIBILIDADE DE CARROS<span class="sr-only">(current)</span></a>
                                 </li>';
                                 echo '<li class="nav-item active">
-                                    <a class="nav-link" href="#">HISTÓRICO DE ALUGUEIS<span class="sr-only">(current)</span></a>
+                                    <a class="nav-link" href="#">HISTÓRICO DE ALUGUEIS<span class="sr-only">(current)</span></a> 
                                 </li>';
                             }
                             echo '<li class="nav-item active">
