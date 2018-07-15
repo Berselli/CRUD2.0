@@ -19,19 +19,59 @@ class Controller_primario extends CI_Controller {
         }
 
         public function cadastro_carro(){
+
+                $this->load->model('usuario');
+                $this->load->model('modelo');
+                $this->load->model('data_base');
+                $this->load->library('session');
+
+                $obj_usuario = $this->session->userdata('usuario');
+                if($obj_usuario -> is_admin()){
+                        $objDataBase = new Data_base();
+
+                        $objDataBase -> open();
+
+                        $modelo_array = $objDataBase -> get_modelos();
+
+                        $data['page_title'] = 'Cadastro de Carros';
+                        $data['modelo_array'] = $modelo_array;
+                        $this->load->view('header', $data);
+                        $this->load->view('cadastro_carro');
+                        $this->load->view('footer');
+
+                }else{
+                        $this-> index();
+                }
+
+                
+        }
+
+        public function cadastrar_carro(){
+
                 $this->load->model('usuario');
                 $this->load->model('data_base');
                 $this->load->library('session');
 
-                $objDataBase = new Data_base();
+                $modelo_carro = $this->input->post('modelo_carro');
+                $ano_carro = $this->input->post('ano_carro');
+                $placa_carro = $this->input->post('placa_carro');
+                $cor_carro = $this->input->post('cor_carro');               
 
-                $objDataBase -> open();
+                if( ($modelo_carro !== '') && ($ano_carro !== '') && ($placa_carro !== '') && ($cor_carro !== '') ){
+                                $objDataBase = new Data_base();
 
+                        $objDataBase -> open();
+
+                        $valor_retorno = $objDataBase -> cadastrar_carro($modelo_carro, $ano_carro, $placa_carro, $cor_carro);
+                        if($valor_retorno){
+                                $this-> aluguel();                        
+                        }else{
+                                $this-> cadastro_carro();
+                        }
+                }else{
+                        $this-> cadastro_carro();
+                }
                 
-                $data['page_title'] = 'Cadastro de Carros';
-                $this->load->view('header', $data);
-                $this->load->view('cadastro_carro');
-                $this->load->view('footer');
         }
 
 
