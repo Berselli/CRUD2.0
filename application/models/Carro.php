@@ -45,7 +45,7 @@
         }
 
         public function is_locado(){
-            if( ( !(is_null($this -> locatario_carro)) && $this -> locatario_carro !== '') || $this -> locatario_carro === 0 ){
+            if( ( !(is_null($this -> locatario_carro)) && $this -> locatario_carro !== '' && $this -> locatario_carro != 0) ){
                 return true;
             }else{
                 return false;
