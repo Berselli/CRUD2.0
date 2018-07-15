@@ -104,8 +104,8 @@
 
         #endregion
 
-        #region pegar carros
-        public function get_carros(){
+        #region pegar carros não locados
+        public function get_carros_nao_locados(){
             try{
                 $this->load->model('carro');                
 
@@ -113,6 +113,45 @@
 
                 $query =  $this->db->select('id_carro, modelo.nome_modelo, ano_carro, placa_carro, locatario_carro, cor_carro, locacao_carro')->from('carro')
                 ->join('modelo', 'modelo.id_modelo = carro.modelo_carro')->group_start()->where('locatario_carro = ')->or_where('locatario_carro', 0)->group_end()->get();
+
+                if ($query)
+                {
+                    foreach ($query->result() as $row){
+
+                        $obj_carro = new Carro();
+
+                        $obj_carro -> set_id($row-> id_carro);
+                        $obj_carro -> set_modelo($row-> nome_modelo);
+                        $obj_carro -> set_ano($row-> ano_carro);
+                        $obj_carro -> set_placa($row-> placa_carro);
+                        $obj_carro -> set_locatario($row-> locatario_carro);
+                        $obj_carro -> set_cor($row-> cor_carro);
+                        $obj_carro -> set_locacao($row-> locacao_carro);
+
+                        $array_carros[] = $obj_carro;
+                    }
+
+                    return $array_carros;
+                    
+                } else{
+                    return false;
+                }
+
+            } catch(Exception $e){
+                return false;
+            }
+        }
+        #endregion
+
+        #region pegar carros não locados
+        public function get_carros(){
+            try{
+                $this->load->model('carro');                
+
+                $array_carros = array();
+
+                $query =  $this->db->select('id_carro, modelo.nome_modelo, ano_carro, placa_carro, locatario_carro, cor_carro, locacao_carro')->from('carro')
+                ->join('modelo', 'modelo.id_modelo = carro.modelo_carro')->get();
 
                 if ($query)
                 {
