@@ -121,7 +121,9 @@ class Controller_primario extends CI_Controller {
                 $email_usuario = $this->input->post('email_usuario');
                 $senha_usuario = $this->input->post('senha_usuario');
 
-                $obj_usuario = $objDataBase -> usuario_entar($email_usuario, $senha_usuario);
+                $senha_criptografada = md5($senha_usuario);
+
+                $obj_usuario = $objDataBase -> usuario_entar($email_usuario, $senha_criptografada);
 
                 $objDataBase -> close();
                 
@@ -149,11 +151,13 @@ class Controller_primario extends CI_Controller {
 
                 if( ($nome_usuario !== '') && ($sobrenome_usuario !== '') && ($senha_usuario !== '') && ($email_usuario !== '') ){
 
+                        
+                        $senha_criptografada = md5($senha_usuario);
                         $objDataBase = new Data_base();
 
                         $objDataBase -> open();
 
-                        $valor_retorno = $objDataBase -> cadastrar_usuario($nome_usuario, $sobrenome_usuario, $senha_usuario, $email_usuario);
+                        $valor_retorno = $objDataBase -> cadastrar_usuario($nome_usuario, $sobrenome_usuario, $senha_criptografada, $email_usuario);
                         $objDataBase -> close();
                         if($valor_retorno){
                                 $this -> index();
