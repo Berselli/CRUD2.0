@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
     $this->load->library('session');
+    $modelo_array = $this->session->userdata('modelo_array');
 ?>
 
 
@@ -23,3 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>
 </div>
+
+<?php
+    $this->session->unset_userdata('modelo_array');
+?>
