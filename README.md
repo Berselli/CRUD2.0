@@ -22,7 +22,7 @@ Documentação para uso:
 		- Ao acessar a opeção do menú Disponibilidade de Carros:
 			- Pode verificar a disponibilidade do veículo (Carro no Pátio ou Locado) e suas informações.
 			- Pode acessar uma página para fazer alterações de Cor, Placa ou deletar o veículo
-				 por meio do botão Alterar. (O usuário terá as opções alterar e deletar respectivas ao veículo).
+				 por meio do botão Alterar. (O usuário terá as opções alterar e deletar).
 		- Ao acessar a opeção do menú Histórico de Alugueis:
 			- O usuário poderá ver as informações de locatario e modelo do veículo, data de locação
 				e data de devolução. (No caso do campo de dadta de devolução estar em branco indica que
