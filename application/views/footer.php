@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-            <footer class="" >
-                <div class="footer-div bg-primary " >
+        <footer class="" >
+            <div class="footer-div bg-primary " >
                 <a class="footer-logo " href="#" ></a>
                 <ul class="navbar-nav mr-auto " >
                     <li>
@@ -29,7 +29,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </li>
                 </ul>       
             </div>
-            </footer>
-
+        </footer>
     </body>
 </html>

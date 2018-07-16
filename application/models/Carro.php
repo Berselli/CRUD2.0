@@ -3,6 +3,7 @@
 
     class Carro extends CI_Model
     {
+        #region atributos
         private $id_carro;
         private $modelo_carro;
         private $ano_carro;
@@ -10,12 +11,13 @@
         private $locatario_carro;
         private $cor_carro;
         private $id_locacao;
+        #endregion
 
-        
         public function __construct(){
             parent::__construct();
         }
 
+        #region getters
         public function get_id(){
             return $this -> id_carro;
         }
@@ -51,7 +53,9 @@
                 return false;
             }
         }
+        #endregion
 
+        #region setters
         public function set_id($id){
             $this -> id_carro = $id;
         }
@@ -79,6 +83,7 @@
         public function set_locacao($locacao){
             $this -> id_locacao = $locacao;
         }
+        #endregion
 
     }
 ?>

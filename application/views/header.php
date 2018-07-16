@@ -17,7 +17,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <a class="navbar-logo" href="<?php echo base_url('index.php/controller_primario/index')?>"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarColor02" data-js="navbar-menu" >
@@ -36,7 +36,7 @@
                                     <a class="nav-link" href="'. base_url('index.php/controller_primario/disponibilidade_carros') .'">TABLELA DE DISPONIBILIDADE DE CARROS<span class="sr-only">(current)</span></a>
                                 </li>';
                                 echo '<li class="nav-item active">
-                                    <a class="nav-link" href="#">HISTÓRICO DE ALUGUEIS<span class="sr-only">(current)</span></a> 
+                                    <a class="nav-link" href="'. base_url('index.php/controller_primario/historico_locacao') .'">HISTÓRICO DE ALUGUEIS<span class="sr-only">(current)</span></a>  
                                 </li>';
                             }
                             echo '<li class="nav-item active">
@@ -53,10 +53,6 @@
                     ?>
                     
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="BUSQUE UM CARRO">
-                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Busque</button>
-                </form>
             </div>
         </nav>
     </header>

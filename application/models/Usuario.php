@@ -3,18 +3,20 @@
 
     class Usuario extends CI_Model
     {
+        #region atributos
         private $id_usuario;
         private $nome_usuario;
         private $senha_usuario;
         private $email_usuario;
         private $admin_usuario;
         private $sobrenome_usuario;
-
+        #endregion
         
         public function __construct(){
             parent::__construct();
         }
 
+        #region getters
         public function get_id(){
             return $this -> id_usuario;
         }
@@ -42,7 +44,9 @@
         public function is_admin(){
             return $this -> admin_usuario;
         }
+        #endregion
 
+        #region setters
         public function set_id($id){
             $this -> id_usuario = $id;
         }
@@ -66,7 +70,7 @@
         public function set_sobrenome($sobrenome){
             $this -> sobrenome_usuario = $sobrenome;
         }
+        #endregion
 
-        
     }
 ?>
