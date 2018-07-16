@@ -338,6 +338,7 @@ class Controller_primario extends CI_Controller {
         }
         #endregion
 
+        #region função para atualizar os dados de um carro
         public function update_carro(){
 
                 $this->load->model('data_base');
@@ -357,7 +358,9 @@ class Controller_primario extends CI_Controller {
                 }
 
         }
+        #endregion
 
+        #region função para deletar um carro CASCADE no BANCO DE DADOS
         public function deletar_carro(){
 
                 $this->load->model('data_base');
@@ -375,10 +378,39 @@ class Controller_primario extends CI_Controller {
                 }else{
                         $this -> disponibilidade_carros();
                 }
-
         }
+        #endregion
 
+        #region pagina do historico de locações
+        public function historico_locacao(){
 
+                $this->load->model('data_base');
+                $this->load->model('usuario');
+                $this->load->model('historico_locacao'); 
+                $this->load->library('session');
 
+                $obj_usuario = $this->session->userdata('usuario');
+                if($obj_usuario){
+                        if($obj_usuario -> is_admin()){
+
+                                $objDataBase = new Data_base();        
+                                $objDataBase -> open();        
+                                $historico_array = $objDataBase -> get_historico_locacao();
+
+                                $this->session->set_userdata('historico_array', $historico_array);
+
+                                $data['page_title'] = 'Histórico de Locação';
+                                $this->load->view('header', $data);
+                                $this->load->view('historico_locacao');
+                                $this->load->view('footer');
+        
+                        }else{
+                                $this-> index();
+                        }                        
+                }else{
+                        $this -> index();
+                }
+        }
+        #endregion
 
 }
