@@ -143,7 +143,7 @@
         }
         #endregion
 
-        #region pegar carros não locados
+        #region pegar todos carros
         public function get_carros(){
             try{
                 $this->load->model('carro');                
@@ -221,6 +221,39 @@
         }
         #endregion
 
+        #region pegar carro pela id
+        public function get_carro_by_id($id_carro){
+            try{
+                $this->load->model('carro');                
+
+                $array_carros = array();
+
+                $query =  $this->db->select('id_carro, modelo.nome_modelo, ano_carro, placa_carro, locatario_carro, cor_carro, locacao_carro')->from('carro')
+                ->join('modelo', 'modelo.id_modelo = carro.modelo_carro')->where('id_carro', $id_carro)->get();
+
+                $row = $query->row();
+
+            if (isset($row))
+            {
+                $obj_carro = new Carro();
+
+                $obj_carro -> set_id($row-> id_carro);
+                $obj_carro -> set_modelo($row-> nome_modelo);
+                $obj_carro -> set_ano($row-> ano_carro);
+                $obj_carro -> set_placa($row-> placa_carro);
+                $obj_carro -> set_locatario($row-> locatario_carro);
+                $obj_carro -> set_cor($row-> cor_carro);
+                $obj_carro -> set_locacao($row-> locacao_carro);
+
+                return $obj_carro;
+            }
+
+            } catch(Exception $e){
+                return false;
+            }
+        }
+        #endregion
+
         #region alugar carro
         public function alugar_carro($id_usuario, $id_carro){
             try{
@@ -271,10 +304,10 @@
 
         
         #region delete car
-        public function deleteCar($car_id){
+        public function deletar_carro($id_carro){
             try{
-                $this->db->where('car_id', $car_id);
-                $this->db->delete('car');
+                $this->db->where('id_carro', $id_carro);
+                $this->db->delete('carro');
                 return true;
             }catch(Exception $e){
                 return null;
@@ -282,18 +315,16 @@
         }
         #endregion
 
-        #region update car
-        public function updateCar($car_id, $car_model, $car_year, $car_plate, $car_color){
+        #region update carro
+        public function update_carro($id_carro, $placa_carro, $cor_carro){
             try{
                 $data = array(
-                    'car_model' => $car_model,
-                    'car_year' => $car_year,
-                    'car_plate' => $car_plate,
-                    'car_color' => $car_color
+                    'placa_carro' => $placa_carro,
+                    'cor_carro' => $cor_carro
                 );
                 
-                $this->db->where('car_id', $car_id);
-                $this->db->update('car', $data);
+                $this->db->where('id_carro', $id_carro);
+                $this->db->update('carro', $data);
                 return true;
             }catch(Exception $e){
                 return null;
