@@ -19,27 +19,31 @@
 
         #region login de usuario
         public function usuario_entar($email_usuario, $senha_usuario){
+            try{
+                $this->load->model('usuario');
 
-            $this->load->model('usuario');
+                $obj_usuario = new Usuario();
 
-            $obj_usuario = new Usuario();
+                $query =  $this->db->select('*')->from('usuario')->where('senha_usuario', $senha_usuario)->where('email_usuario', $email_usuario)->get();
+                $row = $query->row();            
 
-            $query =  $this->db->select('*')->from('usuario')->where('senha_usuario', $senha_usuario)->where('email_usuario', $email_usuario)->get();
-            $row = $query->row();            
-
-            if (isset($row))
-            {
-                $obj_usuario -> set_id($row-> id_usuario);
-                $obj_usuario -> set_nome($row-> nome_usuario);
-                $obj_usuario -> set_sobrenome($row-> sobrenome_usuario);
-                $obj_usuario -> set_email($row-> email_usuario);
-                $obj_usuario -> set_senha($row-> senha_usuario);                
-                $obj_usuario -> set_admin($row-> admin_usuario);
-                
-                return $obj_usuario;
-            } else{
+                if (isset($row))
+                {
+                    $obj_usuario -> set_id($row-> id_usuario);
+                    $obj_usuario -> set_nome($row-> nome_usuario);
+                    $obj_usuario -> set_sobrenome($row-> sobrenome_usuario);
+                    $obj_usuario -> set_email($row-> email_usuario);
+                    $obj_usuario -> set_senha($row-> senha_usuario);                
+                    $obj_usuario -> set_admin($row-> admin_usuario);
+                    
+                    return $obj_usuario;
+                } else{
+                    return false;
+                }
+            }catch(Exception $e){
                 return false;
             }
+            
         }
         #endregion
 
@@ -301,9 +305,8 @@
             }
         }
         #endregion
-
         
-        #region delete car
+        #region deletar carro
         public function deletar_carro($id_carro){
             try{
                 $this->db->where('id_carro', $id_carro);
@@ -328,6 +331,47 @@
                 return true;
             }catch(Exception $e){
                 return null;
+            }
+        }
+        #endregion
+    
+        #region pegar historico de locações
+        public function get_historico_locacao(){
+            try{
+                $this->load->model('historico_locacao');                
+
+                $array_historico = array();
+
+                $query =  $this->db->select("id_historico_locacao, usuario.nome_usuario, usuario.sobrenome_usuario, modelo.nome_modelo,
+                 DATE_FORMAT(data_locacao_historico_locacao, '%d-%m-%Y')as data_loca,
+                  DATE_FORMAT(data_devolucao_historico_locacao, '%d-%m-%Y')as data_dev")->from('historico_locacao')
+                ->join('usuario', 'usuario.id_usuario = historico_locacao.locatario_historico_locacao', 'inner')
+                ->join('carro', 'carro.id_carro = historico_locacao.carro_historico_locacao','inner')
+                ->join('modelo', 'modelo.id_modelo = carro.modelo_carro')->get();
+
+                if ($query)
+                {
+                    foreach ($query->result() as $row){
+
+                        $obj_historico = new Historico_locacao();
+
+                        $obj_historico -> set_id($row-> id_historico_locacao);
+                        $obj_historico -> set_locatario($row-> nome_usuario . ' ' . $row-> sobrenome_usuario);
+                        $obj_historico -> set_carro($row-> nome_modelo);
+                        $obj_historico -> set_data_locacao($row-> data_loca);
+                        $obj_historico -> set_data_devolucao($row-> data_dev);
+
+                        $array_historico[] = $obj_historico;
+                    }
+
+                    return $array_historico;
+                    
+                } else{
+                    return false;
+                }
+
+            } catch(Exception $e){
+                return false;
             }
         }
         #endregion
