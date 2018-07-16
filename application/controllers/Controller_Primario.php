@@ -65,37 +65,44 @@ class Controller_primario extends CI_Controller {
                 $this->load->model('usuario');
                 $this->load->model('data_base');
                 $this->load->library('session');
+                
+                try{
+                        $modelo_carro = $this->input->post('modelo_carro');
+                        $ano_carro = (int)$this->input->post('ano_carro');
+                        $placa_carro = $this->input->post('placa_carro');
+                        $cor_carro = $this->input->post('cor_carro');                
+                        $obj_usuario = $this->session->userdata('usuario');
 
-                $modelo_carro = $this->input->post('modelo_carro');
-                $ano_carro = $this->input->post('ano_carro');
-                $placa_carro = $this->input->post('placa_carro');
-                $cor_carro = $this->input->post('cor_carro');
-                
-                $obj_usuario = $this->session->userdata('usuario');
-
-                if($obj_usuario){
-                        if($obj_usuario -> is_admin()){
-                                if( ($modelo_carro !== '') && (!is_null($modelo_carro) ) && ($ano_carro !== '') && (!is_null($ano_carro) ) 
-                                && ($placa_carro !== '') && (!is_null($placa_carro) ) && ($cor_carro !== '') && (!is_null($placa_carro)) && is_int($ano_carro) ){
-                                        $objDataBase = new Data_base();
-                
-                                        $objDataBase -> open();
-                
-                                        $valor_retorno = $objDataBase -> cadastrar_carro($modelo_carro, $ano_carro, $placa_carro, $cor_carro);
-                                        if($valor_retorno){
-                                                $this-> disponibilidade_carros();                        
+                        if($obj_usuario){
+                                if($obj_usuario -> is_admin()){
+                                        if( ($modelo_carro !== '') && (!is_null($modelo_carro) ) && ($ano_carro !== '') && (!is_null($ano_carro) ) 
+                                        && ($placa_carro !== '') && (!is_null($placa_carro) ) && ($cor_carro !== '') && (!is_null($placa_carro)) 
+                                        && is_int($ano_carro) && $ano_carro !== 0){
+                                                $objDataBase = new Data_base();
+                        
+                                                $objDataBase -> open();
+                        
+                                                $valor_retorno = $objDataBase -> cadastrar_carro($modelo_carro, $ano_carro, $placa_carro, $cor_carro);
+                                                if($valor_retorno){
+                                                        $this-> disponibilidade_carros();                        
+                                                }else{
+                                                        $this-> cadastro_carro();
+                                                }
                                         }else{
                                                 $this-> cadastro_carro();
-                                        }
+                                        }  
                                 }else{
-                                        $this-> cadastro_carro();
-                                }  
+                                        $this-> index();
+                                }
                         }else{
                                 $this-> index();
                         }
-                }else{
-                        $this-> index();
+
+                }catch(Exception $e)  {
+                        $this-> cadastro_carro();
                 }
+
+                
 
                               
         }
