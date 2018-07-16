@@ -9436,7 +9436,9 @@ a.text-dark:hover, a.text-dark:focus {
 
 .footer-position{
   left: 0;
-  position: relative;
+  position:absolute;
+  bottom:0;
+  height: 60px;
   width: 100%;
   color:rgba(255, 255, 255, 0.9);
   }
@@ -9469,6 +9471,7 @@ a.text-dark:hover, a.text-dark:focus {
   height: 85%;
   width: 100%;
   position: relative;
+  padding-bottom:60px;
 }
 
 .container_center_left {
@@ -9478,6 +9481,7 @@ a.text-dark:hover, a.text-dark:focus {
   height: 85%;
   width: 100%;
   position: relative;
+  padding-bottom:60px;
 }
 
 .container-center-big {
@@ -9486,6 +9490,12 @@ a.text-dark:hover, a.text-dark:focus {
   height: 85%;
   width: 100%;
   position: relative;
+  padding-bottom:60px;
+}
+
+.big-big{
+  min-height:100%;
+  position:relative;
 }
 
 
