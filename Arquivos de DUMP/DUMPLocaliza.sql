@@ -129,7 +129,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'Juliano','Berselli','julianob@mail.com','julianob',0),(3,'Administrador','Supremo','admin@mail.com','admin',1);
+INSERT INTO `usuario` VALUES (1,'Juliano','Berselli','julianob@mail.com','077c2170022851cf6c6e5d11a10acc4a',0),(3,'Administrador','Supremo','admin@mail.com','21232f297a57a5a743894a0e4a801fc3',1);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -142,4 +142,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-07-16  9:36:15
+-- Dump completed on 2018-07-16 10:32:00
