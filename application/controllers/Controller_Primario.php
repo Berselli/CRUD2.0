@@ -76,7 +76,7 @@ class Controller_primario extends CI_Controller {
                 if($obj_usuario){
                         if($obj_usuario -> is_admin()){
                                 if( ($modelo_carro !== '') && (!is_null($modelo_carro) ) && ($ano_carro !== '') && (!is_null($ano_carro) ) 
-                                && ($placa_carro !== '') && (!is_null($placa_carro) ) && ($cor_carro !== '') && (!is_null($placa_carro)) ){
+                                && ($placa_carro !== '') && (!is_null($placa_carro) ) && ($cor_carro !== '') && (!is_null($placa_carro)) && is_int($ano_carro) ){
                                         $objDataBase = new Data_base();
                 
                                         $objDataBase -> open();
